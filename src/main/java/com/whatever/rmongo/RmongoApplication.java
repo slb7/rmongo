@@ -187,7 +187,7 @@ public class RmongoApplication {
             super.onNext(document);
             String key = "x" + rand.nextInt(1000000);
             collection.find(eq("_id", key)).first().subscribe(this);
-            if(++count % 200 == 0) {
+            if(++count % 100 == 0) {
                 Duration d = Duration.between(start,Instant.now());
                 long elapsed = d.toNanos() / 1000;
                 long speed = elapsed / count;
