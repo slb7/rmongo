@@ -111,7 +111,7 @@ public class RmongoApplication {
             return this;
         }
     }
-    @Bean
+//    @Bean
     CommandLineRunner n2() {
         return (String... args) -> {
             System.out.println("b2");
