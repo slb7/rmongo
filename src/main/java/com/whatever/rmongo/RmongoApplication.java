@@ -111,19 +111,19 @@ public class RmongoApplication {
             return this;
         }
     }
-//    @Bean
+    @Bean
     CommandLineRunner n2() {
         return (String... args) -> {
             System.out.println("b2");
             ConnectionString cs = new ConnectionString("mongodb://ec2-18-209-62-109.compute-1.amazonaws.com");
-            MongoClient mongoClient = MongoClients.create(cs);
+            MongoClient mongoClient = MongoClients.create(/*cs*/);
             MongoDatabase database = mongoClient.getDatabase("temp");
 
             MongoCollection <Document> collection = database.getCollection("c1");
 
             ArrayList<Document> documents = new ArrayList <Document>();
             for(int i = 0;i < 1000000;i++) {
-                documents.add(new Document("_id", "x" + i).append("y",i));
+                documents.add(new Document("name", "x" + i).append("y",i));
                 ObservableSubscriber<Success> success = new ObservableSubscriber <Success>();
                 if(i % 10000 == 0 || i == 999999) {
                     collection.insertMany(documents).subscribe(success);
@@ -154,8 +154,9 @@ public class RmongoApplication {
     CommandLineRunner nameless() {
         return (String... args) -> {
             System.out.println("hw");
+//            ConnectionString cs = new ConnectionString("mongodb://ec2-18-209-62-109.compute-1.amazonaws.com");
             ConnectionString cs = new ConnectionString("mongodb://ec2-18-209-62-109.compute-1.amazonaws.com");
-            MongoClient mongoClient = MongoClients.create(cs);
+            MongoClient mongoClient = MongoClients.create(/*cs*/);
             MongoDatabase database = mongoClient.getDatabase("temp");
 
             MongoCollection <Document> collection = database.getCollection("c1");
