@@ -187,7 +187,7 @@ public class RmongoApplication {
         public void onNext(final Document document) {
             super.onNext(document);
             String key = "x" + rand.nextInt(1000000);
-            collection.find(eq("_id", key)).first().subscribe(this);
+            collection.find(eq("name", key)).first().subscribe(this);
             //Eyecatcher
             if(++count % 10000 == 0) {
                 Duration d = Duration.between(start,Instant.now());
